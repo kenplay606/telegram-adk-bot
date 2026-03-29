@@ -1,0 +1,32 @@
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment variables (NEVER commit these!)
+.env
+*.env
+my_agent/.env
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# ADK specific
+*.log
+
+# Old files (not needed for deployment)
+android-sdk/
+setup-android-sdk.ps1
+recruitment-monitor/
