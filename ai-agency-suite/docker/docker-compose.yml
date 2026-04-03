@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  ai-agency-suite:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: ai-agency-suite
+    ports:
+      - "8000:8000"  # API
+      - "8501:8501"  # Dashboard
+    environment:
+      - OLLAMA_HOST=http://localhost:11434
+      - OLLAMA_MODEL=llama3.1
+      - DATABASE_URL=sqlite:///./data/ai_agency.db
+      - CHROMA_PERSIST_DIR=./chroma_db
+    env_file:
+      - ../.env
+    volumes:
+      - ../data:/app/data
+      - ../videos:/app/videos
+      - ../thumbnails:/app/thumbnails
+      - ../logs:/app/logs
+      - ../chroma_db:/app/chroma_db
+      - ../websites:/app/websites
+      - ../output:/app/output
+    restart: unless-stopped
+    networks:
+      - ai-agency-network
+
+networks:
+  ai-agency-network:
+    driver: bridge
